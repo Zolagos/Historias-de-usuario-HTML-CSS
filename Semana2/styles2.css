@@ -1,11 +1,9 @@
 body {
     /* Define una tipografía limpia y sin serifas para mejor lectura */
     font-family: Arial, sans-serif;
-    
     /* Reseteo del modelo de caja base para el body */
     margin: 0;
     padding: 0;
-    
     /* Color de fondo diferenciador para toda la página */
     background-color: #f0f2f5;
     color: #333;
@@ -16,16 +14,23 @@ header {
     color: white;
     padding: 20px; /* Espacio interior (Padding del modelo de caja) */
     text-align: center;
+    /* Convierte el header en un contenedor flexible */
+    display: flex; 
+    /* Justify-content: distribuye el espacio. Separa el Nombre a la izquierda y el Menú a la derecha */
+    justify-content: space-between; 
+    /* Align-items: centra verticalmente el título y los botones para que queden en la misma línea */
+    align-items: center; 
+    /* Flex-wrap: Permite que si la pantalla es muy pequeña (celular), el menú baje a otra línea */
+    flex-wrap: wrap;
 }
 
-nav ul {
-    list-style-type: none; /* Quita los puntos predeterminados de la lista */
+.menu-navegacion{
+    list-style-type: none;
     padding: 0;
-}
-
-nav ul li {
-    display: inline; /* Hace que los elementos de la lista se pongan uno al lado del otro */
-    margin: 0 15px; /* Margen exterior izquierdo y derecho */
+    margin: 0;
+    /*Flexbox dentro del menú para los enlaces */
+    display: flex;
+    gap: 20px; /* Gap funciona en Flexbox para separar elementos sin usar margin */
 }
 
 nav a {
@@ -54,6 +59,27 @@ h2 {
     color: #2980b9;
     border-bottom: 2px solid #ecf0f1;
     padding-bottom: 10px;
+}
+
+.grid-proyectos {
+    padding: 0;
+    list-style: none;
+    /* Define el contenedor como una cuadrícula Grid */
+    display: grid;
+    /* grid-template-columns: Crea columnas que se adaptan solas. 
+       minmax(200px, 1fr) significa: las tarjetas medirán mínimo 200px, 
+       y si hay espacio extra, se estirarán equitativamente (1fr). */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    /* Agrega el espacio de separación exigido entre tarjetas */
+    gap: 20px; 
+}
+
+.tarjeta-proyecto {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
 form {
@@ -89,36 +115,36 @@ form button:hover {
 }
 
 .galeria {
-    display: flex;
-    flex-direction: row; /* Asegura la dirección horizontal */
-    flex-wrap: nowrap;   /* PROPIEDAD CLAVE: Evita que las tarjetas se bajen */
-    justify-content: center; /* Centra el grupo de tarjetas */
-    gap: 20px;           /* Crea un espacio uniforme de 20px entre cada tarjeta */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;           /* Crea un espacio uniforme de 20px entre cada tarjeta */
     padding: 20px;
+    max-width: 1000px; /* Limita el ancho para que no se estiren demasiado */
+    margin: 0 auto; /* Centra la galería */
     background-color: transparent;
     box-shadow: none;   
 }
 
 .tarjeta-mascota {
     background-color: white;
-    flex: 1;     /* Hace que las tarjetas se repartan el espacio disponible por igual */
-    min-width: 300px;    /* Limita el ancho para que no se estiren en pantallas grandes */
     padding: 15px;
     border-radius: 12px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.15);
     text-align: center;
+    display: flex;
+    flex-direction: column; 
+    align-items: center; /* Centra el contenido internamente */ 
 }   
 
 .tarjeta-mascota img {
     width: 100%; /* Hace que la imagen ocupe todo el ancho de su caja */
     border-radius: 8px; /* Imagen con bordes redondeados */
-    height: 280px; /* Altura fija para todas las imágenes. */
+    height: 250px; /* Altura fija para todas las imágenes. */
     object-fit: cover; /* Centra y recorta la imagen para que no se deforme */
 }
 
 .btn-retorno {
-    display: inline-block;
-    margin-top: 15px;
+    display: inline-block;  
     color: #2c3e50;
     background-color: #ecf0f1;
     padding: 8px 15px;
